@@ -1,7 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from "../core/reducers/counterSlice";
+import sliderReducer from '../core/reducers/sliderSlice'
+import userReducer from '../core/reducers/userSlice'
+import gameControlReducer from '../core/reducers/gameControlSlice'
 export default configureStore({
     reducer: {
-        counter:counterReducer
+        slider:sliderReducer,
+        user:userReducer,
+        gameControl:gameControlReducer
     },
 })

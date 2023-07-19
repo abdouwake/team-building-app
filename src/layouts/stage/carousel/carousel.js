@@ -5,7 +5,7 @@ import Slider from "./slider/slider";
 
 
 function Carousel(props) {
-    const [selected,setSelected] = useState(0)
+    const [selected,setSelected] = useState(1)
 
     return (
         <div className="carousel-container">

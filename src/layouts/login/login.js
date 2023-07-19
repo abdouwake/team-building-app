@@ -17,7 +17,7 @@ function Login(props) {
                     <a href="/signin"> crée un compte.</a>
                 </div>
                 <br/>
-                <div className="form-control">
+                <div className="form-control-card">
                     <TextField value={email} onChange={e=>setEmail(e.target.value)} className="input-button-login" id="standard-basic" label="Email" variant="standard" />
                     <br/>
                     <TextField value={password} onChange={e=>setPassword(e.target.value)}  className="input-button-login" id="standard-basic" label="Password" variant="standard" />

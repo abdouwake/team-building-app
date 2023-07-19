@@ -1,0 +1,16 @@
+.avatar-container{
+  border-radius: 50%;
+  height: 80px;
+  transition: 0.5s;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  transition: 0.5s;
+}
+
+.avatar-container:hover{
+  transform: scale(0.9);
+  transition: 0.3s;
+  cursor: pointer;
+}

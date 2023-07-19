@@ -5,8 +5,11 @@
   justify-content: center;
 
   .form-container{
-    position: absolute;
-    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:30px;
+    min-height: 500px;
     width: 350px;
   }
   .cgi-logo{

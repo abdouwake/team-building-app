@@ -2,7 +2,14 @@
   background-color: #f3f3f3;
   height: 100%;
   border-radius: 20px;
+  transition: 0.5s;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 
+  video{
+    width: 340px;
+  }
   .quote-text {
   padding: 0 20px 20px 20px;
 
