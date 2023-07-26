@@ -10,8 +10,8 @@ export const userSlice = createSlice({
         unity:'',
         picture:'',
         funFact:'',
-        qrCode:''
-    },
+        qrCode:'',
+     },
     reducers: {
         setPicture:(state,action)=>{
             state.picture= action.payload;

@@ -10,19 +10,18 @@ function Card(props) {
     const dispatch = useDispatch()
     const selectedUser = useSelector((state) => state.slider.selectedUser)
     const userList = useSelector((state) => state.slider.userList)
-    const [isFlipped,hadleClick]=useState(false)
     const [data, setData] = useState('No result');
 
     return (
-        <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
+        <ReactCardFlip isFlipped={props.isFlipped} flipDirection="vertical">
             <div>
                 <div className="card-container">
                     <FormatQuoteIcon style={{fontSize:"50px"}}/>
                     <div className="quote-text">
-                        {userList.find((u)=>u.id==selectedUser)?.message}
+                        {userList.find((u)=>u.id==selectedUser)?.funFact}
                     </div>
                     <div style={{width:"100%",textAlign:"center"}}>
-                        <Button onClick={()=>hadleClick(!isFlipped)} style={{marginBottom:"20px"}}variant="contained">I Know you !</Button>
+                        <Button onClick={()=>props.hadleClick(!props.isFlipped)} style={{marginBottom:"20px"}}variant="contained">I Know you !</Button>
                     </div>
                 </div>
 
@@ -31,16 +30,13 @@ function Card(props) {
             <div>
                 <div className="card-container">
                     {
-                        isFlipped && <QrReaderComponent />
+                        props.isFlipped && <QrReaderComponent hadleClick={props.hadleClick} />
                     }
-                    <div style={{width:"100%",textAlign:"center"}}>
-                        <Button  onClick={()=>hadleClick(!isFlipped)} style={{marginBottom:"20px"}}variant="contained">Return!</Button>
-                    </div>
+
                 </div>
 
             </div>
         </ReactCardFlip>
-
 
     );
 }

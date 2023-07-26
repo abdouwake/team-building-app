@@ -14,11 +14,7 @@ function Page1(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
-    const firstName = useSelector((state) => state.user.firstName)
-    const lastName = useSelector((state) => state.user.lastName)
-    const email = useSelector((state) => state.user.email)
-    const password = useSelector((state) => state.user.password)
-    const unity = useSelector((state) => state.user.unity)
+
 
     return (
         <div className="form-container">
@@ -32,15 +28,15 @@ function Page1(props) {
             </div>
             <br/>
             <div className="form-control-app">
-                <TextField value={firstName} onChange={e=>dispatch(setFirstName(e.target.value))} className="input-button-login" id="standard-basic" label="First name" variant="standard" />
+                <TextField value={props.firstName} onChange={e=>dispatch(setFirstName(e.target.value))} className="input-button-login" id="standard-basic" label="First name" variant="standard" />
                 <br/>
-                <TextField value={lastName} onChange={e=>dispatch(setLastName(e.target.value))} className="input-button-login" id="standard-basic" label="Family name" variant="standard" />
+                <TextField value={props.lastName} onChange={e=>dispatch(setLastName(e.target.value))} className="input-button-login" id="standard-basic" label="Family name" variant="standard" />
                 <br/>
-                <TextField value={unity} onChange={e=>dispatch(setUnity(e.target.value))} className="input-button-login" id="standard-basic" label="Unity" variant="standard" />
+                <TextField value={props.unity} onChange={e=>dispatch(setUnity(e.target.value))} className="input-button-login" id="standard-basic" label="Unity" variant="standard" />
                 <br/>
-                <TextField value={email} onChange={e=>dispatch(setEmail(e.target.value))} className="input-button-login" id="standard-basic" label="Email" variant="standard" />
+                <TextField value={props.email} onChange={e=>dispatch(setEmail(e.target.value))} className="input-button-login" id="standard-basic" label="Email" variant="standard" />
                 <br/>
-                <TextField type="password" value={password} onChange={e=>dispatch(setPassword(e.target.value))}  className="input-button-login" id="standard-basic" label="Password" variant="standard" />
+                <TextField type="password" value={props.password} onChange={e=>dispatch(setPassword(e.target.value))}  className="input-button-login" id="standard-basic" label="Password" variant="standard" />
                 <div className="button-container">
                     <Button variant="contained"  onClick={()=>props.setPage(2)}>Next</Button>
                 </div>

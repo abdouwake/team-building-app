@@ -3,7 +3,6 @@ export function getList(){
         .then(data=>data.json())
 }
 
-
 export function setItem(item) {
     return fetch('http://localhost:3333/list', {
         method: 'POST',

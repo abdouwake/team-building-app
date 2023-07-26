@@ -11,14 +11,10 @@ import {setFunFact} from '../../core/reducers/userSlice'
 
 
 function Page2(props) {
+
     const [openCamera,setOpenCamera] = useState(false)
     const navigate = useNavigate();
     const dispatch = useDispatch()
-
-    const user = useSelector((state) => state.user)
-    const picture = useSelector((state) => state.user.picture)
-    const funFact = useSelector((state) => state.user.funFact)
-
 
     return (
         <div className="page-container">
@@ -41,21 +37,23 @@ function Page2(props) {
                 </div>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"center"}} >
                     <img className="user-picture" src={
-                        picture!="" ? picture :
+                        props.picture!="" ? props.picture :
                             "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
-                    } style={{height:"100px"}}/>
+                    } style={{height:"100px",width:"100px"}}/>
                 </div>
                 <div style={{textAlign:"center"}}>
                     <TextField style={{width:"80%"}} placeholder="Tell us everything !"
                                multiline
                                rows={4}
-                               maxRows={4} value={funFact} onChange={e=>dispatch(setFunFact(e.target.value))}  id="standard-basic" label="Tell us everything !" variant="standard" />
+                               maxRows={4} value={props.funFact}
+                               onChange={e=>dispatch(setFunFact(e.target.value))}
+                               id="standard-basic" label="Tell us everything !" variant="standard" />
                 </div>
 
                 <div className="form-control-app">
                     <div className="button-container">
                         <Button className="m-2" variant="contained" onClick={()=>props.setPage(1)}>Previous</Button>
-                        <Button variant="contained" onClick={()=>navigate('/stage')}>Finish</Button>
+                        <Button variant="contained" onClick={()=>props.login()}>Finish</Button>
                     </div>
                 </div>
             </div>

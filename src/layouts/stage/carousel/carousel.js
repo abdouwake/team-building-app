@@ -3,17 +3,16 @@ import './carousel.scss'
 import Card from "./card/card";
 import Slider from "./slider/slider";
 
-
 function Carousel(props) {
-    const [selected,setSelected] = useState(1)
+    const [isFlipped,hadleClick]=useState(false)
 
     return (
         <div className="carousel-container">
             <div className="card-section">
-                <Card selected={selected} />
+                <Card isFlipped={isFlipped} hadleClick={hadleClick}   />
             </div>
             <div className="slider-container">
-                <Slider />
+                <Slider  flipCard={hadleClick}/>
             </div>
         </div>
     );

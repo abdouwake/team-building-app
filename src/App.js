@@ -1,3 +1,4 @@
+import React,{useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -7,10 +8,12 @@ import Dashboard from "./layouts/dashboard/dashboard";
 import Stage from "./layouts/stage/stage";
 import {Landing} from "./layouts/landing/landing";
 
-function App() {
+
+function App(){
+
     return (
           <Router>
-              <Routes >
+              <Routes>
                   <Route exact path="/" element={<Landing/>} />
                   <Route exact path="/login" element={<Login/>} />
                   <Route path="/signin" element={<Signin/>} />
@@ -22,3 +25,5 @@ function App() {
 }
 
 export default App;
+
+

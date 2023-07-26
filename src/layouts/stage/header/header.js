@@ -18,7 +18,7 @@ function Header(props) {
             <div className="classement">
                 <StarHalfIcon style={{color:'gold',fontSize:"30px",marginRight:"5px"}}/>
                 <div style={{color:'white'}}>
-                    My Ranking : 2/30
+                    My Ranking : n/30
                 </div>
             </div>
         </div>

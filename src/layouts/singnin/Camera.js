@@ -5,7 +5,7 @@ import {Button, TextField} from "@mui/material";
 import {setPicture} from '../../core/reducers/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
-
+import './Camera.css'
 const Camera = (props) =>{
     const dispatch = useDispatch()
     const picture = useSelector((state) => state.user.picture)
@@ -30,7 +30,7 @@ const Camera = (props) =>{
                     </Webcam>
                     :
                     <div style={{textAlign:"center"}}>
-                        <img src={picture} />
+                        <img className="user-picture"  src={picture} />
                         <div>
                             <Button style={{margin:"20px"}} variant="contained"  onClick={()=>dispatch(setPicture(""))}>Retake</Button>
                             <Button variant="contained" onClick={()=> {

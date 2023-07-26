@@ -8,7 +8,9 @@ function QrDisplay(props) {
     const openQrModal = useSelector((state) => state.slider.openQrModal)
     const dispatch = useDispatch()
     const email = useSelector((state) => state.user.email)
-    console.log(email,atob(email))
+    var user = JSON.parse(sessionStorage.getItem('user'))
+
+
     return (
         <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'}}
             open={openQrModal}
@@ -19,13 +21,13 @@ function QrDisplay(props) {
         >
             <div>
                 <QRCode
-                    value={btoa("fa_belkhiri@esi.dz")}
+                    // value={btoa(user.email)}
+                    value={user.email}
                     bgColor={"white"}
-                    fgColor={'#5236ab'}
+                    fgColor={'black'}
                 />
             </div>
         </Modal>
     );
 }
-
 export default QrDisplay;
