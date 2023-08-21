@@ -5,6 +5,7 @@
   justify-content: center;
 
   .form-container{
+
     position: absolute;
     top:50%;
     transform: translate(0, -50%);
@@ -21,7 +22,7 @@
   }
 
   a{
-    color: #91dcf5;
+    color: var(--redCgi) !important;
     text-decoration: none;
   }
 
@@ -29,7 +30,7 @@
     font-family : "system-ui";
     font-size: 20px;
     height: 50px;
-    color: white;
+    color: #000000 !important;
     text-align: center;
     margin: 40px;
   }
@@ -49,5 +50,12 @@
      .input-button-login{
        width: 80%;
      }
+    .MuiButtonBase-root{
+      background-color: var(--violetCgi) !important;
+      color: white !important;
+    }
   }
+
+
+
 }

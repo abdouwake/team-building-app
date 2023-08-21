@@ -8,12 +8,13 @@ function Carousel(props) {
 
     return (
         <div className="carousel-container">
-            <div className="card-section">
-                <Card isFlipped={isFlipped} hadleClick={hadleClick}   />
-            </div>
             <div className="slider-container">
                 <Slider  flipCard={hadleClick}/>
             </div>
+            <div className="card-section">
+                <Card isFlipped={isFlipped} hadleClick={hadleClick}   />
+            </div>
+
         </div>
     );
 }

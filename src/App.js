@@ -6,7 +6,8 @@ import Login from "./layouts/login/login";
 import Signin from "./layouts/singnin/Signin";
 import Dashboard from "./layouts/dashboard/dashboard";
 import Stage from "./layouts/stage/stage";
-import {Landing} from "./layouts/landing/landing";
+import Landing from "./layouts/landing/landing";
+import Admin from "./layouts/admin/admin";
 
 
 function App(){
@@ -19,7 +20,8 @@ function App(){
                   <Route path="/signin" element={<Signin/>} />
                   <Route path="/dashboard" element={<Dashboard/>} />
                   <Route path="/stage" element={<Stage/>} />
-              </Routes >
+                  <Route path="/admin" element={<Admin/>} />
+              </Routes>
           </Router>
   );
 }

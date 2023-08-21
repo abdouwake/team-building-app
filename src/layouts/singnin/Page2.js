@@ -29,11 +29,22 @@ function Page2(props) {
                     <img src={cgiLogo} />
                 </div>
                 <div className="login-placeholder-text">
-                    Share something fun about yourself,  an old funny accident or a awkward situation.
+                    Partagez un FunFact qui sera visible par tout vos collègues, soyez créatifs !
                 </div>
 
+
+                <div style={{textAlign:"center"}}>
+                    <TextField style={{width:"80%"}} placeholder="Dites nous tout !"
+                               multiline
+                               rows={4}
+                               maxRows={4} value={props.funFact}
+                               onChange={e=>dispatch(setFunFact(e.target.value))}
+                               id="standard-basic" label="Dites nous tout !" variant="standard" />
+                </div>
+
+
                 <div style={{display:"flex",alignItems:"center",justifyContent:"center"}} >
-                    <Button onClick={()=>setOpenCamera(true)} variant="contained"  >  <CameraAltIcon style={{marginRight:"5px"}}/>Take a picture</Button>
+                    <Button onClick={()=>setOpenCamera(true)} variant="contained"  >  <CameraAltIcon style={{marginRight:"5px"}}/>Prendre un selfie</Button>
                 </div>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"center"}} >
                     <img className="user-picture" src={
@@ -41,19 +52,14 @@ function Page2(props) {
                             "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
                     } style={{height:"100px",width:"100px"}}/>
                 </div>
-                <div style={{textAlign:"center"}}>
-                    <TextField style={{width:"80%"}} placeholder="Tell us everything !"
-                               multiline
-                               rows={4}
-                               maxRows={4} value={props.funFact}
-                               onChange={e=>dispatch(setFunFact(e.target.value))}
-                               id="standard-basic" label="Tell us everything !" variant="standard" />
-                </div>
+
+
+
 
                 <div className="form-control-app">
                     <div className="button-container">
-                        <Button className="m-2" variant="contained" onClick={()=>props.setPage(1)}>Previous</Button>
-                        <Button variant="contained" onClick={()=>props.login()}>Finish</Button>
+                        <Button className="m-2" variant="contained" onClick={()=>props.setPage(1)}>Précédant</Button>
+                        <Button variant="contained" onClick={()=>props.login()}>Créer</Button>
                     </div>
                 </div>
             </div>

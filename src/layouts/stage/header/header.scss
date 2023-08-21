@@ -5,18 +5,28 @@
     height: 60px;
     display: flex;
     justify-content: space-between;
+    color:black;
 
+    .logo-cgi-header{
+        height: 20px;
+    }
 
     .qr-code{
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 
     .classement{
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .HandButton:hover{
+        cursor: pointer;
+    }
+
+    .QRCode > svg {
     }
 }

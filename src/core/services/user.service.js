@@ -5,6 +5,7 @@ export function login(email,password){
     const data = {
           id:"",
           email:email,
+            unit:"",
           password:password,
           completeName:"",
           picture:"",
@@ -19,6 +20,7 @@ export function signin(firstName,lastName,unity,email,password,picture,funFact){
     const data = {
         id:"",
         email:email,
+        unit:unity,
         password:password,
         completeName:firstName+" "+lastName,
         picture:picture,

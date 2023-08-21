@@ -20,22 +20,22 @@ const Camera = (props) =>{
 
     return (
         <div className="container" style={{display:"flex",justifyContent:"center"}}>
-            <div className="title-message">Take a picture !</div>
+            <div className="title-message">Prenez une photo de vous !</div>
             {
                 picture==="" ?
                     <Webcam  height={300} width={300} ref={webcamRef} >
                         {({ getScreenshot }) => (
-                            <Button variant="contained"  onClick={capture}>Take</Button>
+                            <Button variant="contained"  onClick={capture}>Prise</Button>
                         )}
                     </Webcam>
                     :
                     <div style={{textAlign:"center"}}>
                         <img className="user-picture"  src={picture} />
                         <div>
-                            <Button style={{margin:"20px"}} variant="contained"  onClick={()=>dispatch(setPicture(""))}>Retake</Button>
+                            <Button style={{margin:"20px"}} variant="contained"  onClick={()=>dispatch(setPicture(""))}>Réessayer</Button>
                             <Button variant="contained" onClick={()=> {
                                 props.setOpenCamera(false)
-                            }} >Save</Button>
+                            }} >Enregistrers</Button>
                         </div>
                     </div>
             }

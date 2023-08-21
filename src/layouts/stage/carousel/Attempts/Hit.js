@@ -2,25 +2,27 @@ import React, {useEffect, useState} from 'react';
 import ConfettiExplosion from 'react-confetti-explosion';
 import './ModalStyling.css'
 import { useSelector, useDispatch } from 'react-redux'
-import {setHit} from '../../../../core/reducers/gameControlSlice'
+import {setHit, setMiss} from '../../../../core/reducers/gameControlSlice'
+import {setAnimate} from "../../../../core/reducers/gameContextSlice";
 
 function Hit(props) {
-    const [animate,setAnimate] = useState("move")
     const dispatch = useDispatch()
-    var hit = useSelector((state) => state.gameControl.hit)
+    var animate = useSelector((state) => state.gameContext.animate)
 
     const userList = useSelector((state) => state.slider.userList)
     const selectedUser = useSelector((state) => state.slider.selectedUser)
     const target = userList.filter((u)=>u.id===selectedUser)[0]
 
-
-    useEffect(() => {
-        setAnimate("stop")
+    const animateHit=()=>{
+        dispatch(setAnimate("stop"))
         setTimeout(()=>{
             dispatch(setHit(false))
-        },2000)
-    }, []);
+        },3000)
+    }
 
+    useEffect(() => {
+        animateHit();
+    }, []);
 
     return (
         <div className="modal-container miss">

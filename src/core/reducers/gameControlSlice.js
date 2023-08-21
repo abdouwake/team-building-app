@@ -1,16 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-
 export const gameControlSlice = createSlice({
-    name:'gameControl',
+    name:'dateEnd',
     initialState:{
-        play:false,
-        partyEnded:false,
-        temptUser:{
-            picture:'https://www.jeancoutu.com/globalassets/revamp/photo/conseils-photo/20160302-01-reseaux-sociaux-profil/photo-profil_301783868.jpg'},
-        atemptPicture:"",
+        play:true,
+        endGame:false,
+        dateEnd:undefined,
         hit:false,
-        miss:false
+        miss:false,
     },
     reducers: {
         setPlay: (state, action) => {
@@ -31,10 +28,13 @@ export const gameControlSlice = createSlice({
         setAttemptPicture: (state, action) => {
             state.atemptPicture = action.payload
         },
+        setDateEnd: (state, action) => {
+            state.dateEnd = action.payload
+        },
     },
 })
 
 
-export const {setPlay,setPartyEnded,setHit,setMiss,setAttemptPicture}= gameControlSlice.actions
+export const {setPlay,setDateEnd,setPartyEnded,setHit,setMiss,setAttemptPicture}= gameControlSlice.actions
 
 export default gameControlSlice.reducer

@@ -1,17 +1,21 @@
 import React, {useState,useLayoutEffect, useEffect} from 'react';
 import './ModalStyling.css'
 import { useSelector, useDispatch } from 'react-redux'
-import ConfettiExplosion from 'react-confetti-explosion';
 import {setMiss} from '../../../../core/reducers/gameControlSlice'
+import {setAnimate} from "../../../../core/reducers/gameContextSlice";
 function Miss(props) {
-    const [animate,setAnimate] = useState("move")
     const dispatch = useDispatch()
+    var animate = useSelector((state) => state.gameContext.animate)
 
-    useEffect(() => {
-        setAnimate("stop")
+    const animateMiss=()=>{
+        dispatch(setAnimate("stop"))
         setTimeout(()=>{
             dispatch(setMiss(false))
-        },700)
+        },3000)
+    }
+
+    useEffect(() => {
+        animateMiss();
     }, []);
 
 

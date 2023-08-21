@@ -24,6 +24,7 @@ function QrDisplay(props) {
                     // value={btoa(user.email)}
                     value={user.email}
                     bgColor={"white"}
+                    // fgColor={'var(--redCgi)'}
                     fgColor={'black'}
                 />
             </div>

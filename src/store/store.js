@@ -3,6 +3,7 @@ import sliderReducer from '../core/reducers/sliderSlice'
 import userReducer from '../core/reducers/userSlice'
 import gameControlReducer from '../core/reducers/gameControlSlice'
 import gameContextReducer from '../core/reducers/gameContextSlice'
+
 export default configureStore({
     reducer: {
         slider:sliderReducer,
@@ -10,4 +11,9 @@ export default configureStore({
         gameControl:gameControlReducer,
         gameContext:gameContextReducer
     },
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
+
 })

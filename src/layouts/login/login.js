@@ -38,7 +38,7 @@ function Login(props) {
                 <div className="form-control-card">
                     <TextField value={email} onChange={e=>setEmail(e.target.value)} className="input-button-login" id="standard-basic" label="Email" variant="standard" />
                     <br/>
-                    <TextField type="password" value={password} onChange={e=>setPassword(e.target.value)}  className="input-button-login" id="standard-basic" label="Password" variant="standard" />
+                    <TextField type="password" value={password} onChange={e=>setPassword(e.target.value)}  className="input-button-login" id="standard-basic" label="Mot de passe" variant="standard" />
                     <div className="button-container">
                         <Button variant="contained" onClick={()=>onLogin()}>Login</Button>
                     </div>

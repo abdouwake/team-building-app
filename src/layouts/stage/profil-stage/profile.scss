@@ -20,14 +20,34 @@
     .name-user{
         font-size: 30px;
         margin-bottom: 5px;
+        color: #313131
     }
     .grade-user{
         display: flex;
         padding: 2px;
         margin-bottom: 5px;
+        color: #313131
     }
     .results{
         padding: 2px;
         display: flex;
+        color:var(--violetCgi)
     }
+
+    .banner-container{
+        position: relative;
+        display: flex;
+    }
+    .avatar-pic{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .banner-pic{
+        border-radius: 20px;
+
+        height: 70px;
+    }
+
 }

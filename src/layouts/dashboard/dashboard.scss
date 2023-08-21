@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  overflow: hidden;
   .avatar-user{
     border-radius: 50%;
   }
@@ -28,16 +28,20 @@
   }
 
   .content {
-  font-size: 20px;
+    overflow: hidden;
+
+    font-size: 1vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    //align-items: center;
+    //justify-content: center;
+    gap: 10vw;
+    padding: 30px;
     height: 40vw;
     width: 80vw;
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
-    overflow-y: scroll;
   }
 
 
@@ -66,19 +70,19 @@
   .ranking-row{
     justify-content: space-between;
 
-    width: 600px;
-    padding:20px;
+    width: 25vw;
+    padding:1vw;
     gap:30px;
-    border: solid #E31937 2px ;
+    border: solid #49d629 2px ;
     display: flex;
     align-items: center;
 
-    box-shadow: 0 0 .2rem #E31937,
-    0 0 .1rem #E31937,
-    0 0 0rem #E31937,
-    0 0 0.1rem #E31937,
-    0 0 1.8rem #E31937,
-    inset 0 0 1.3rem #E31937;
+    box-shadow: 0 0 .2rem #49d629,
+    0 0 .1rem #49d629,
+    0 0 0rem #49d629,
+    0 0 0.1rem #49d629,
+    0 0 1.8rem #49d629,
+    inset 0 0 1.3rem #49d629;
   }
 
 

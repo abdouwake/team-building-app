@@ -7,7 +7,7 @@ export const userSlice = createSlice({
         lastName:'',
         email:'',
         password:'',
-        unity:'',
+        unit:'',
         picture:'',
         funFact:'',
         qrCode:'',
@@ -32,7 +32,7 @@ export const userSlice = createSlice({
             state.password= action.payload
         },
         setUnity: (state,action)=>{
-            state.unity= action.payload
+            state.unit= action.payload
         },
         setEmail: (state,action)=>{
             state.email= action.payload

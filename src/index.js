@@ -12,21 +12,14 @@ import {ThemeProvider,createTheme } from "@mui/material";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const darkTheme = createTheme({
-    palette: {
-        mode:  'dark'
-    },
-});
+
 
 root.render(
-    <ThemeProvider theme={darkTheme}>
       <React.StrictMode>
          <Provider store={store}>
                 <App />
          </Provider>
       </React.StrictMode>
-    </ThemeProvider>
-
 );
 
 reportWebVitals();

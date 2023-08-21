@@ -1,5 +1,13 @@
+:root {
+  --redCgi: #e13048;
+  --violetCgi: #5236ab;
+}
+
+
+
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -36,3 +44,12 @@
     transform: rotate(360deg);
   }
 }
+
+/*.MuiButtonBase-root{*/
+/*  background-color: var(--violetCgi);*/
+/*}*/
+
+/*.MuiButtonBase-root{*/
+/*  background-color: var(--violetCgi) !important;*/
+/*  color: white !important;*/
+/*}*/

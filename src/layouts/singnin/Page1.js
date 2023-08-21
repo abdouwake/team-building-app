@@ -24,21 +24,21 @@ function Page1(props) {
             <div className="login-placeholder-text">
                 Inscrivez vous pour de profiter du jeux !
                 déjà inscrit ?
-                <a href="/login"> connecte toi !</a>
+                <a href="/login"> connectez vous !</a>
             </div>
             <br/>
             <div className="form-control-app">
-                <TextField value={props.firstName} onChange={e=>dispatch(setFirstName(e.target.value))} className="input-button-login" id="standard-basic" label="First name" variant="standard" />
+                <TextField value={props.firstName} onChange={e=>dispatch(setFirstName(e.target.value))} className="input-button-login" id="standard-basic" label="Prénom" variant="standard" />
                 <br/>
-                <TextField value={props.lastName} onChange={e=>dispatch(setLastName(e.target.value))} className="input-button-login" id="standard-basic" label="Family name" variant="standard" />
+                <TextField value={props.lastName} onChange={e=>dispatch(setLastName(e.target.value))} className="input-button-login" id="standard-basic" label="Nom" variant="standard" />
                 <br/>
-                <TextField value={props.unity} onChange={e=>dispatch(setUnity(e.target.value))} className="input-button-login" id="standard-basic" label="Unity" variant="standard" />
-                <br/>
+                {/*<TextField value={props.unit} onChange={e=>dispatch(setUnity(e.target.value))} className="input-button-login" id="standard-basic" label="Unité d'affaires" variant="standard" />*/}
+                {/*<br/>*/}
                 <TextField value={props.email} onChange={e=>dispatch(setEmail(e.target.value))} className="input-button-login" id="standard-basic" label="Email" variant="standard" />
                 <br/>
-                <TextField type="password" value={props.password} onChange={e=>dispatch(setPassword(e.target.value))}  className="input-button-login" id="standard-basic" label="Password" variant="standard" />
+                <TextField type="password" value={props.password} onChange={e=>dispatch(setPassword(e.target.value))}  className="input-button-login" id="standard-basic" label="Mot de passe" variant="standard" />
                 <div className="button-container">
-                    <Button variant="contained"  onClick={()=>props.setPage(2)}>Next</Button>
+                    <Button variant="contained"  onClick={()=>props.setPage(2)}>Suivant</Button>
                 </div>
             </div>
         </div>

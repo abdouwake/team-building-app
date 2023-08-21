@@ -15,14 +15,20 @@ function Card(props) {
     return (
         <ReactCardFlip isFlipped={props.isFlipped} flipDirection="vertical">
             <div>
-                <div className="card-container">
-                    <FormatQuoteIcon style={{fontSize:"50px"}}/>
+                <div className="card-container p-4">
+                    {/*<FormatQuoteIcon style={{fontSize:"50px",color:"var(--violetCgi)"}}/>*/}
                     <div className="quote-text">
-                        {userList.find((u)=>u.id==selectedUser)?.funFact}
+                        {userList.find((u)=>u.id==selectedUser) ?
+                            userList.find((u)=>u.id==selectedUser)?.funFact
+                            :<div style={{fontWeight:"600"}}>Selectionnez un utilisateur pour afficher son FunFact !</div>
+                        }
                     </div>
-                    <div style={{width:"100%",textAlign:"center"}}>
-                        <Button onClick={()=>props.hadleClick(!props.isFlipped)} style={{marginBottom:"20px"}}variant="contained">I Know you !</Button>
-                    </div>
+                    {
+                        !userList.find((u)=>u.id==selectedUser)?.discovered         && selectedUser!="-1"
+                        &&  <div style={{width:"100%",textAlign:"center"}}>
+                            <Button onClick={()=>props.hadleClick(!props.isFlipped)} style={{marginBottom:"20px"}}variant="contained">Identifier</Button>
+                        </div>
+                    }
                 </div>
 
             </div>

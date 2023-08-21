@@ -4,7 +4,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import './slider.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import {setSelectedUser} from '../../../../core/reducers/sliderSlice'
-
+import  CgiPlaceHolder from '../../../../core/statics/petitUser.png'
 const handleDragStart = (e) => e.preventDefault();
 
 const responsive = {
@@ -16,10 +16,7 @@ const responsive = {
 
 function Slider(props) {
     const userList = useSelector((state) => state.slider.userList)
-
-    useEffect(()=>{
-        dispatch(setSelectedUser(userList[0].id))
-    },[])
+    const [selectedKey,setSelectedKey]=useState(-1)
 
 
     const selectedUser = useSelector((state) => state.slider.selectedUser)
@@ -31,6 +28,20 @@ function Slider(props) {
         props.flipCard(false)
     }
 
+    const questionMark =(key,id)=>{
+        return(
+            <div onClick={() => {
+                setSelectedKey(key);
+                onClickUser(id)
+            }} className={"question-mark-container " +( key==selectedKey ? "selectedKey":"")}>
+                <img onClick={(a) => onClickUser(id)}  src={CgiPlaceHolder} className="placeholderpic" />
+                {/*<div className={"question-mark-1"}>?</div>*/}
+                {/*<div className={"question-mark-2"}>?</div>*/}
+                {/*<div className={"question-mark-3"}>?</div>*/}
+            </div>
+        )
+    }
+
     return (
         <AliceCarousel fadeOutAnimation={true}
                        infinite={true}
@@ -39,10 +50,11 @@ function Slider(props) {
                        mouseTracking
                        >
             {
-                userList.filter((u)=>u.id!=user.id).map((user) => {
+                userList.filter((u)=>u.id!=user.id).map((user,index) => {
                     return(
-                        <img key={user.id} onClick={(a) => onClickUser(user.id)} className="avatar-container" src={user.discovered ?
-                            user.picture:"https://images.all-free-download.com/images/graphiclarge/question_mark_icon_vector_281250.jpg"}/>
+                        user.discovered ?
+                        <img key={user.id} onClick={(a) => onClickUser(user.id)} className="avatar-container" src={ user.picture}/>
+                            : questionMark(index,user.id)
                     )
                 })
             }

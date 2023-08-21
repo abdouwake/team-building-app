@@ -48,5 +48,9 @@
     .input-button-login{
       width: 80%;
     }
+    .MuiButtonBase-root{
+      background-color: var(--violetCgi) !important;
+      color: white !important;
+    }
   }
 }
