@@ -24,7 +24,7 @@ function Page1(props) {
             <div className="login-placeholder-text">
                 Inscrivez vous pour de profiter du jeux !
                 déjà inscrit ?
-                <a href="/login"> connectez vous !</a>
+                <a href="/"> connectez vous !</a>
             </div>
             <br/>
             <div className="form-control-app">

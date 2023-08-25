@@ -8,12 +8,13 @@
   justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
+  background-color: #ffffff;
 
   .stage{
+    background-color: #ffffff;
     height: 844px;
     width: 390px;
     overflow-y: scroll;
-    background-color: #ffffff;
     padding-bottom: 50px;
     .MuiButtonBase-root{
       background-color: var(--violetCgi) !important;

@@ -36,6 +36,7 @@ function Stage(props) {
     return (
         <div className="stage-container">
             {
+                endOfGame ? "":
                 play ?
                     <div>
                         <QrDisplay />
