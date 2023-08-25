@@ -6,10 +6,9 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import Timer from "./timer/timer";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import {useDispatch, useSelector} from "react-redux";
-import Modale, {format} from "./modale/modale";
-import moment from "moment/moment";
+import Modale  from "./modale/modale";
 import RankRow from "../stage/carousel/ranking/rank-row";
-import {getUsersList, RequestGetUserListAll} from "../../core/actions/gameContext.action";
+import {RequestGetUserListAll} from "../../core/actions/gameContext.action";
 
 function Admin(props) {
 
@@ -21,7 +20,6 @@ function Admin(props) {
             dispatch(RequestGetUserListAll())
         }, 5000);
     }, []);
-
 
     var play = useSelector((state) => state.gameControl.play)
     var partyEnded = useSelector((state) => state.gameControl.partyEnded)
@@ -60,7 +58,8 @@ function Admin(props) {
                                 <div className="action-item-text">Commencer la partie</div>
                             </div>
                             <Button onClick={()=>setOpen(true)} className="button-violet-cgi" variant="contained">Start</Button>
-                        </div>
+
+            </div>
                 }
 
                 {
@@ -77,7 +76,7 @@ function Admin(props) {
                         </div>
                 }
             </div>
-                <div style={{color:"white",paddingLeft:'20px',fontSize:"18px"}}>
+                <div style={{color:"black",paddingLeft:'20px',fontSize:"18px"}}>
                     Total des utilisateurs inscrits : {userList.length}
                 </div>
 

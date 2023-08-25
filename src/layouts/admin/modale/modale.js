@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Modal,Button } from '@mui/material';
+import {Button} from '@mui/material';
 import './modale.scss'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -9,7 +9,7 @@ import { RequestGetGameplay, RequestUpdateGameplay} from "../../../core/actions/
 import {useDispatch, useSelector} from "react-redux";
 import {setDateEnd} from "../../../core/reducers/gameControlSlice";
 import moment from "moment";
-
+import {Modal} from 'antd'
 
 export const format = "YYYY-MM-DDTHH:mm:ss";
 function Modale(props) {
@@ -40,13 +40,34 @@ function Modale(props) {
     return (
         <Modal
             open={props.open}
+            footer={[
+                <Button key="back" onClick={()=>props.setOpen(false)}>
+                    Return
+                </Button>,
+                <Button key="submit" type="primary"  onClick={handleOk}>
+                    {
+                        !play ?
+                            <Button className="button-violet-cgi" onClick={()=>startParty()}> Commencer la partie !</Button>:
+                            <Button className="button-violet-cgi" onClick={()=>updateDateParty()}> Modifier la date de la partie.</Button>
+                    }
+                </Button>
+                // <Button
+                //     key="link"
+                //     href="https://google.com"
+                //     type="primary"
+                //     loading={loading}
+                //     onClick={handleOk}
+                // >
+                //     Search on Google
+                // </Button>,
+            ]}
             onClose={()=>props.setOpen(false)}
             centered={true}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description">
             <div style={{width:"100%",height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
-                <div style={{backgroundColor:"#484848",textAlign:"center",padding:"30px"}}>
-                    <div style={{marginBottom:"20px",color:"white"}}>
+                <div style={{textAlign:"center",padding:"30px"}}>
+                    <div style={{marginBottom:"20px",color:"black"}}>
                                 <div>
                                    <div>
                                        {
@@ -70,16 +91,10 @@ function Modale(props) {
                                     <br/>
 
                                     <br/>
-                                    {
-                                        !play ?
-                                            <Button className="button-violet-cgi" onClick={()=>startParty()}> Commencer la partie !</Button>:
-                                            <Button className="button-violet-cgi" onClick={()=>updateDateParty()}> Modifier la date de la partie.</Button>
-                                    }
+
                                 </div>
                     </div>
                 </div>
-                <Button className="button-red-cgi" onClick={()=>props.setOpen(false)}>Retour</Button>
-
             </div>
         </Modal>
     );

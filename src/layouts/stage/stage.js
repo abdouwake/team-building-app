@@ -19,8 +19,8 @@ function Stage(props) {
 
     var play = useSelector((state) => state.gameControl.play)
     var hit = useSelector((state) => state.gameControl.hit)
+    var endOfGame = useSelector((state) => state.gameControl.endOfGame)
     var miss = useSelector((state) => state.gameControl.miss)
-    var userList = useSelector((state) => state.slider.userList)
 
     const dispatch = useDispatch()
 
