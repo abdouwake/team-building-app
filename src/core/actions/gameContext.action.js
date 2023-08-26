@@ -12,15 +12,10 @@ import {format} from "../../layouts/admin/modale/modale";
 
 export function getGameControlRequest(){
     return function (dispatch){
-        return getControls().then(res=>{
-            if(res!=undefined){
-                if(res.data.play){
-                    dispatch(setPlay(res.data.play))
-                }else if (res.data.endGame){
-                    dispatch(setPartyEnded(res.data.endGame))
-                }
-                //JSON.parse(x)
-            }
+        return getGameplay().then(res=>{
+            dispatch(setPlay(res.data.data.play))
+            dispatch(setDateEnd(res.data.data.endDate))
+            dispatch(setPartyEnded(res.data.data.endGame))
         })
     }
 }
@@ -50,7 +45,7 @@ export function RequestGetUserListAll(){
 export function RequestUpdateGameplay(play,EndGame,dateEnd){
     // console.log(dateEnd.$d)
     return function (dispatch){
-        return updateGamePlay(play,EndGame,dateEnd.$d).then(res=>{
+        return updateGamePlay(play,EndGame,dateEnd.$d ).then(res=>{
             dispatch(setPlay(res.data.data.play))
             dispatch(setDateEnd(res.data.data.endDate))
             dispatch(setPartyEnded(res.data.data.endGame))

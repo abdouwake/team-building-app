@@ -16,12 +16,12 @@ function Timer(props) {
     let date = Date.parse(moment(props.date))
     const onFinish = () => {
         //do something about it
-        dispatch(RequestUpdateGameplay(true,true,props.date))
+        dispatch(RequestUpdateGameplay(false,true,date))
     };
 
     return (
         <div className="countdown-container">
-            <Countdown value={date} onFinish={()=>onFinish()} />
+            <Countdown style={{color:"black"}} value={date} onFinish={()=>onFinish()} />
         </div>
     );
 }

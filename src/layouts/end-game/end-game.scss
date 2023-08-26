@@ -1,4 +1,17 @@
-.admin-container {
+.admin-container-eog {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  .end-of-game{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    color: var(--violetCgi);
+    font-weight: 500;
+  }
+
 }
+

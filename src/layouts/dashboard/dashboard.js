@@ -28,9 +28,6 @@ function Dashboard(props) {
         }, 6000);
     }, []);
 
-    const orderList=(list)=>{
-        list
-    }
 
     return (
         <div className="dashboard-scene">
@@ -44,11 +41,10 @@ function Dashboard(props) {
                 {
                     waiting && <Waiting/>
                 }
-                {/*<img className="logo-cgi" src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/CGI_logo.svg/1280px-CGI_logo.svg.png' />*/}
 
                 <div className="ranking">
                     {
-                        [...userList]?.sort((a, b) => b.nbFound-a.nbFound).slice(0,4).map((user,idx)=>{
+                        [...userList]?.sort((a, b) => b.nbFound-a.nbFound).slice(0,3).map((user,idx)=>{
                             return(
                                 <div className="ranking-row">
                                     <div className="rank-side" style={{fontSize:'40px',fontWeight:"600"}}>

@@ -22,9 +22,9 @@ function Admin(props) {
     }, []);
 
     var play = useSelector((state) => state.gameControl.play)
-    var partyEnded = useSelector((state) => state.gameControl.partyEnded)
+    var partyEnded = useSelector((state) => state.gameControl.endGame)
     var [open,setOpen]= useState(false)
-    var dateEnd = useSelector((state) => state.gameControl.dateEnd)
+    var endDate = useSelector((state) => state.gameControl.endDate)
     var userList = useSelector((state) => state.slider.userList)
 
     return (
@@ -40,17 +40,26 @@ function Admin(props) {
                     </div>
                 </div>
 
+                <br/>
+                <br/>
+
                 {
                     play && !partyEnded &&
-                        <div className="timer" style={{color:"white"}}>
-                            {dateEnd != undefined && dateEnd != null && dateEnd != "" && < Timer date={dateEnd} />}
+                        <div className="timer">
+                            {endDate != undefined && endDate != null && endDate != "" && <Timer date={endDate} />}
                         </div>
                 }
 
             <div className="actions-container">
                 {
                     play ?
-                        ""
+                        <div className="action-item">
+                            <div className="d-flex align-items-center justify-content-center">
+                                <RocketLaunchIcon className="action-item-img"/>
+                                <div className="action-item-text">Réinitalisé la partie</div>
+                            </div>
+                            <Button onClick={()=>setOpen(true)} className="button-violet-cgi" variant="contained">Reset</Button>
+                        </div>
                         :
                         <div className="action-item">
                             <div className="d-flex align-items-center justify-content-center">
@@ -58,8 +67,7 @@ function Admin(props) {
                                 <div className="action-item-text">Commencer la partie</div>
                             </div>
                             <Button onClick={()=>setOpen(true)} className="button-violet-cgi" variant="contained">Start</Button>
-
-            </div>
+                        </div>
                 }
 
                 {
@@ -69,7 +77,7 @@ function Admin(props) {
                                 <DriveFileRenameOutlineIcon className="action-item-img"/>
                                 <div>
                                     <div className="action-item-text">Modifier la date</div>
-                                    <div className="action-item-text " style={{color:"var(--redCgi)",fontWeight:"900",fontSize:"15px"}}>{dateEnd}</div>
+                                    <div className="action-item-text " style={{color:"var(--redCgi)",fontWeight:"900",fontSize:"15px"}}>{endDate}</div>
                                 </div>
                             </div>
                             <Button className="button-violet-cgi" onClick={()=>setOpen(true)} style={{height:'30px'}} variant="contained">Update</Button>

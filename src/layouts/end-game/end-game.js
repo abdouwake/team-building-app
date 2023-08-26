@@ -3,6 +3,7 @@ import './end-game.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {RequestGetUserListAll} from "../../core/actions/gameContext.action";
 import RankRow from "../stage/carousel/ranking/rank-row";
+import {TrophyOutlined} from "@ant-design/icons";
 
 function EndGame(props) {
     const dispatch = useDispatch()
@@ -18,11 +19,17 @@ function EndGame(props) {
     }, []);
 
     return (
-        <div className="admin-container">
+        <div className="admin-container-eog">
+            <div className="end-of-game">
+                <TrophyOutlined/>
+                <div>
+                    Fin in de la partie
+                </div>
+            </div>
             {
-                userList.map((user,index)=>{
+                [...userList]?.sort((a, b) => b.nbFound-a.nbFound).map((user,index)=>{
                     return(
-                        <RankRow index={index} user={user}/>
+                        <RankRow id={"id-"+index} total={userList.length} index={index} user={user}/>
                     )
                 })
             }

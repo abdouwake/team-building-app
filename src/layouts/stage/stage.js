@@ -3,31 +3,30 @@ import './stage.scss'
 import Header from "./header/header";
 import Profile from "./profil-stage/profile";
 import Carousel from "./carousel/carousel";
-import RankRow from "./carousel/ranking/rank-row";
 import QrDisplay from './qr-display/qr-display'
-import {toggleModal} from '../../core/reducers/sliderSlice'
 import TemptationResult from './carousel/Attempts/TemptationResult'
 import { useSelector, useDispatch } from 'react-redux'
 import Hit from './carousel/Attempts/Hit'
 import Miss from './carousel/Attempts/Miss'
 import LoadingScreen from '../stage/start-screen/loadingScreen'
 import {getGameControlRequest,getUsersList} from '../../core/actions/gameContext.action'
-import {INTERVAL} from '../../config'
-import {compare,sortUsers} from '../../utilities'
+import EndGame from "../end-game/end-game";
 
 function Stage(props) {
 
     var play = useSelector((state) => state.gameControl.play)
     var hit = useSelector((state) => state.gameControl.hit)
-    var endOfGame = useSelector((state) => state.gameControl.endOfGame)
+    var endGame = useSelector((state) => state.gameControl.endGame)
     var miss = useSelector((state) => state.gameControl.miss)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(getGameControlRequest())
         dispatch(getUsersList())
         setInterval(()=>{
             dispatch(getUsersList())
+            dispatch(getGameControlRequest())
         }, 5000);
     }, []);
 
@@ -36,7 +35,9 @@ function Stage(props) {
     return (
         <div className="stage-container">
             {
-                endOfGame ? "":
+                endGame && !play ?
+                    <EndGame />
+                    :
                 play ?
                     <div>
                         <QrDisplay />
@@ -55,7 +56,6 @@ function Stage(props) {
                         <TemptationResult component={<Hit />} open={hit}/>
                         <TemptationResult component={<Miss />} open={miss}/>
                     </div>
-
                     : <LoadingScreen />
             }
 

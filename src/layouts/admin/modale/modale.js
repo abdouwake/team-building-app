@@ -21,7 +21,7 @@ function Modale(props) {
 
     const dispatch = useDispatch()
     const startParty=()=>{
-        dispatch(RequestUpdateGameplay(true,endGame,date))
+        dispatch(RequestUpdateGameplay(true,false,date))
         props.setOpen(false)
     }
 
@@ -44,24 +44,22 @@ function Modale(props) {
                 <Button key="back" onClick={()=>props.setOpen(false)}>
                     Return
                 </Button>,
-                <Button key="submit" type="primary"  onClick={handleOk}>
+                <Button key="submit" type="primary"  onClick={ ()=>{
+                    if(!play){
+                        startParty()
+                    }else{
+                        updateDateParty()}
+                }}>
                     {
                         !play ?
-                            <Button className="button-violet-cgi" onClick={()=>startParty()}> Commencer la partie !</Button>:
-                            <Button className="button-violet-cgi" onClick={()=>updateDateParty()}> Modifier la date de la partie.</Button>
+                             'Commencer la partie' :
+                            'Modifier'
+                            // <Button className="button-violet-cgi" onClick={()=>startParty()}> Commencer la partie !</Button>:
+                            // <Button className="button-violet-cgi" onClick={()=>updateDateParty()}> Modifier la date de la partie.</Button>
                     }
                 </Button>
-                // <Button
-                //     key="link"
-                //     href="https://google.com"
-                //     type="primary"
-                //     loading={loading}
-                //     onClick={handleOk}
-                // >
-                //     Search on Google
-                // </Button>,
             ]}
-            onClose={()=>props.setOpen(false)}
+            onCancel={()=>props.setOpen(false)}
             centered={true}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description">
@@ -88,10 +86,6 @@ function Modale(props) {
                                             views={['year', 'month', 'day', 'hours', 'minutes']}
                                         />
                                     </LocalizationProvider>
-                                    <br/>
-
-                                    <br/>
-
                                 </div>
                     </div>
                 </div>

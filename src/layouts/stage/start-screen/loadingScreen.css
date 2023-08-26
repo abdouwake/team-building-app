@@ -9,7 +9,7 @@
 }
 
 .loading-text{
-    color: white;
+    color: var(--violetCgi);
     font-size: 20px;
     text-align: center;
 }
@@ -19,7 +19,7 @@
     display: block;
     margin:15px auto;
     position: relative;
-    color: #FFF;
+    color: var(--violetCgi);
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
 }
@@ -31,7 +31,7 @@
     width: 24px;
     height: 24px;
     top: 0;
-    background-color: #FFF;
+    color: var(--violetCgi);
     border-radius: 50%;
     animation: scale50 1s infinite ease-in-out;
 }

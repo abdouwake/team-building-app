@@ -5,7 +5,7 @@ export const gameControlSlice = createSlice({
     initialState:{
         play:true,
         endGame:false,
-        dateEnd:undefined,
+        endDate:undefined,
         hit:false,
         miss:false,
     },
@@ -14,7 +14,10 @@ export const gameControlSlice = createSlice({
             state.play = action.payload
         },
         setPartyEnded: (state, action) => {
-            state.partyEnded = action.payload
+            state.endGame = action.payload
+        },
+        setDateEnd: (state, action) => {
+            state.endDate = action.payload
         },
         setHit: (state, action) => {
             state.hit = action.payload
@@ -27,9 +30,6 @@ export const gameControlSlice = createSlice({
         },
         setAttemptPicture: (state, action) => {
             state.atemptPicture = action.payload
-        },
-        setDateEnd: (state, action) => {
-            state.dateEnd = action.payload
         },
     },
 })
