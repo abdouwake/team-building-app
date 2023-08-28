@@ -52,7 +52,7 @@ function Dashboard(props) {
                                     </div>
                                     <div className="profile-side">
                                         <div className="avatar-user">
-                                            <img className="avatar-user" src={user.picture==="" ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
+                                            <img className="avatar-user" src={user.picture==="" || user.picture===null ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
                                         </div>
                                         <div className="nom-complet">
                                             {user.completeName}

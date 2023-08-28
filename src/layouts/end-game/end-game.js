@@ -7,7 +7,6 @@ import {TrophyOutlined} from "@ant-design/icons";
 
 function EndGame(props) {
     const dispatch = useDispatch()
-    var partyEnded = useSelector((state) => state.gameControl.partyEnded)
     var userList = useSelector((state) => state.slider.userList)
 
 

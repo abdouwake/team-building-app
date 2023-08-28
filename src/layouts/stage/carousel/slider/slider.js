@@ -50,7 +50,7 @@ function Slider(props) {
                 userList.filter((u)=>u.id!=user.id).map((user,index) => {
                     return(
                         user.discovered ?
-                        <img draggable="false" key={user.id} onClick={(a) => onClickUser(user.id)} className="avatar-container" src={ user.picture==="" ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
+                        <img draggable="false" key={user.id} onClick={(a) => onClickUser(user.id)} className="avatar-container" src={ user.picture==="" || user.picture===null ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
                             : questionMark(index,user.id)
                     )
                 })
