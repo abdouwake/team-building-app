@@ -15,10 +15,6 @@ function Header(props) {
 
     return (
         <div className="header-stage">
-            {/*<div className="qr-code" onClick={()=>dispatch(toggleModal(true))}>*/}
-            {/*    <QrCode2Icon className="text-rouge" style={{fontSize:"30px",marginRight:"5px"}}/>*/}
-            {/*    <div className="text-rouge"  style={{fontWeight:"600"}}>Votre code QR </div>*/}
-            {/*</div>*/}
             <div>
                 <img src={logoCgi} className="logo-cgi-header"  />
             </div>
@@ -42,12 +38,6 @@ function Header(props) {
 
                         </div>
                          }
-                {/*<StarHalfIcon  className="text-violet" style={{fontSize:"30px",marginRight:"5px"}}/>*/}
-                {/*<div className="text-violet" style={{fontWeight:"600"}}>*/}
-                {/*    {*/}
-                {/*        "votre rang : "+ parseInt(sortUsers(userList).findIndex((u)=>u.id==user.id)+1)+"/30"*/}
-                {/*    }*/}
-                {/*</div>*/}
             </div>
         </div>
     );

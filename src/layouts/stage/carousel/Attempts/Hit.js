@@ -28,7 +28,7 @@ function Hit(props) {
         <div className="modal-container miss">
             <ConfettiExplosion  duration={2000} particleSize={12} zIndex={99999}/>
             <div className={"text-animation "+animate}>
-                <img className="user-picture" src={target.picture} />
+                <img className="user-picture" src={target.picture==="" ? "https://ui-avatars.com/api/?name="+target.completeName:target.picture} />
             </div>
         </div>
     );

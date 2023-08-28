@@ -16,7 +16,6 @@ function Card(props) {
         <ReactCardFlip isFlipped={props.isFlipped} flipDirection="vertical">
             <div>
                 <div className="card-container p-4">
-                    {/*<FormatQuoteIcon style={{fontSize:"50px",color:"var(--violetCgi)"}}/>*/}
                     <div className="quote-text">
                         {userList.find((u)=>u.id==selectedUser) ?
                             userList.find((u)=>u.id==selectedUser)?.funFact

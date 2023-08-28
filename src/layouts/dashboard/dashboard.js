@@ -25,7 +25,7 @@ function Dashboard(props) {
             dispatch(RequestGetTentatives())
             dispatch(RequestGetUserListAll())
 
-        }, 6000);
+        }, 10000);
     }, []);
 
 
@@ -48,11 +48,11 @@ function Dashboard(props) {
                             return(
                                 <div className="ranking-row">
                                     <div className="rank-side" style={{fontSize:'40px',fontWeight:"600"}}>
-                                        {"#"+idx+1}
+                                        {"#"+parseInt(idx+1)}
                                     </div>
                                     <div className="profile-side">
                                         <div className="avatar-user">
-                                            <img className="avatar-user" src={user.picture} />
+                                            <img className="avatar-user" src={user.picture==="" ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
                                         </div>
                                         <div className="nom-complet">
                                             {user.completeName}

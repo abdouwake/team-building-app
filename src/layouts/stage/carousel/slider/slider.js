@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useRef } from 'react';
+import React,{useState} from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './slider.scss'
@@ -10,7 +10,7 @@ const handleDragStart = (e) => e.preventDefault();
 const responsive = {
     100 : {
         items: 4,
-        itemsFit: 'contain',
+        itemsFit: 'fill',
     },
 }
 
@@ -34,10 +34,7 @@ function Slider(props) {
                 setSelectedKey(key);
                 onClickUser(id)
             }} className={"question-mark-container " +( key==selectedKey ? "selectedKey":"")}>
-                <img onClick={(a) => onClickUser(id)}  src={CgiPlaceHolder} className="placeholderpic" />
-                {/*<div className={"question-mark-1"}>?</div>*/}
-                {/*<div className={"question-mark-2"}>?</div>*/}
-                {/*<div className={"question-mark-3"}>?</div>*/}
+                <img draggable="false"  onClick={(a) => onClickUser(id)}  src={CgiPlaceHolder} className="placeholderpic" />
             </div>
         )
     }
@@ -53,7 +50,7 @@ function Slider(props) {
                 userList.filter((u)=>u.id!=user.id).map((user,index) => {
                     return(
                         user.discovered ?
-                        <img key={user.id} onClick={(a) => onClickUser(user.id)} className="avatar-container" src={ user.picture}/>
+                        <img draggable="false" key={user.id} onClick={(a) => onClickUser(user.id)} className="avatar-container" src={ user.picture==="" ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
                             : questionMark(index,user.id)
                     )
                 })

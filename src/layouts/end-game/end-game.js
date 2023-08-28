@@ -29,7 +29,7 @@ function EndGame(props) {
             {
                 [...userList]?.sort((a, b) => b.nbFound-a.nbFound).map((user,index)=>{
                     return(
-                        <RankRow id={"id-"+index} total={userList.length} index={index} user={user}/>
+                        <RankRow id={"id-"+parseInt(1+index)} total={userList.length} index={index} user={user}/>
                     )
                 })
             }

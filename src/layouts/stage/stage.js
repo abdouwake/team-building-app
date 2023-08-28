@@ -47,10 +47,9 @@ function Stage(props) {
                             <Profile/>
                             <br/>
                             <div style={{textAlign:"center"}}>
-                                Continuer ton profil !
-
+                                Essayez d'identifier vos collèguees
                             </div>
-                            <Carousel />
+                            <Carousel />s
                             <br/>
                         </div>
                         <TemptationResult component={<Hit />} open={hit}/>

@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import './login.scss'
 import cgiLogo from '../../core/statics/cgi.png'
 import {Button, TextField} from "@mui/material";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {loginRequest} from "../../core/actions/user.action"
-import {seEmail,setPassword} from '../../core/reducers/userSlice'
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
@@ -12,16 +11,12 @@ function Login(props) {
     const [password,setPassword] = useState(null)
     const dispatch = useDispatch()
     const navigate = useNavigate();
-
     const onLogin=()=>{
         dispatch(loginRequest(email,password,navigateFunction))
     }
-
     const navigateFunction=()=>{
         navigate("/stage")
     }
-
-
 
     return (
         <div className="page-container">

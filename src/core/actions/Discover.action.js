@@ -21,7 +21,9 @@ export function addDiscoveryRequest(u1,u2){
 export function RequestGetTentatives(){
     return function (dispatch){
         return getTentatives().then(res=>{
-            dispatch(setTentatives(res.data.data))
+            if(res!=undefined){
+                dispatch(setTentatives(res.data.data))
+            }
             //updater les news
             //soustraire les nouveaux des anciens
             //appeler une fonction qui affiche les animations chaque 5 secondes
