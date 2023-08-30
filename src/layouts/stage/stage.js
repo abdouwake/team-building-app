@@ -49,7 +49,7 @@ function Stage(props) {
                             <div style={{textAlign:"center"}}>
                                 Essayez d'identifier vos collèguees
                             </div>
-                            <Carousel />s
+                            <Carousel />
                             <br/>
                         </div>
                         <TemptationResult component={<Hit />} open={hit}/>
