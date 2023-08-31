@@ -27,7 +27,7 @@ function Stage(props) {
         setInterval(()=>{
             dispatch(getUsersList())
             dispatch(getGameControlRequest())
-        }, 5000);
+        }, 50000);
     }, []);
 
 
