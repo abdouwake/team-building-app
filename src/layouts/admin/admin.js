@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Modale  from "./modale/modale";
 import RankRow from "../stage/carousel/ranking/rank-row";
 import {RequestGetUserListAll} from "../../core/actions/gameContext.action";
+import { Initialize } from '../../core/actions/Discover.action';
 
 function Admin(props) {
 
@@ -27,6 +28,10 @@ function Admin(props) {
     var endDate = useSelector((state) => state.gameControl.endDate)
     var userList = useSelector((state) => state.slider.userList)
 
+    const reset = () =>{
+        dispatch(Initialize());
+    }
+
     return (
         <div className="admin-container">
             <Modale open={open} setOpen={setOpen} play={true}/>
@@ -36,7 +41,7 @@ function Admin(props) {
                     <img className="logo-cgi" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/CGI_logo.svg/2560px-CGI_logo.svg.png"/>
                     <div className="admin-title">
                         <AdminPanelSettingsIcon className="admin-pictogram" />
-                        <div>Compte Administrateur</div>
+                        <div>Compte administrateur</div>
                     </div>
                 </div>
 
@@ -52,22 +57,24 @@ function Admin(props) {
 
             <div className="actions-container">
                 {
-                    play ?
+                    <div>
                         <div className="action-item">
                             <div className="d-flex align-items-center justify-content-center">
                                 <RocketLaunchIcon className="action-item-img"/>
-                                <div className="action-item-text">Réinitalisé la partie</div>
+                                <div className="action-item-text">Réinitialiser la partie</div>
                             </div>
-                            <Button onClick={()=>setOpen(true)} className="button-violet-cgi" variant="contained">Reset</Button>
+                            <Button onClick={()=>reset()} className="button-violet-cgi" variant="contained">Réinitialiser</Button>
                         </div>
-                        :
-                        <div className="action-item">
-                            <div className="d-flex align-items-center justify-content-center">
-                                <RocketLaunchIcon className="action-item-img"/>
-                                <div className="action-item-text">Commencer la partie</div>
+                        { !(play && !partyEnded) && 
+                            <div className="action-item">
+                                <div className="d-flex align-items-center justify-content-center">
+                                    <RocketLaunchIcon className="action-item-img"/>
+                                    <div className="action-item-text">Démarrer la partie</div>
+                                </div>
+                                <Button onClick={()=>setOpen(true)} className="button-violet-cgi" variant="contained">Démarrer</Button>
                             </div>
-                            <Button onClick={()=>setOpen(true)} className="button-violet-cgi" variant="contained">Start</Button>
-                        </div>
+                        }
+                    </div>
                 }
 
                 {
@@ -80,7 +87,7 @@ function Admin(props) {
                                     <div className="action-item-text " style={{color:"var(--redCgi)",fontWeight:"900",fontSize:"15px"}}>{endDate}</div>
                                 </div>
                             </div>
-                            <Button className="button-violet-cgi" onClick={()=>setOpen(true)} style={{height:'30px'}} variant="contained">Update</Button>
+                            <Button className="button-violet-cgi" onClick={()=>setOpen(true)} variant="contained">Modifier</Button>
                         </div>
                 }
             </div>

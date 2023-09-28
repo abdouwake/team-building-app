@@ -50,7 +50,7 @@
      .input-button-login{
        width: 80%;
      }
-    .MuiButtonBase-root{
+    .MuiButtonBase-root:not([disabled]){
       background-color: var(--violetCgi) !important;
       color: white !important;
     }

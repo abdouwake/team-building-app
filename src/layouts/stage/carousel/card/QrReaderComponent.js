@@ -73,6 +73,12 @@ function QrReaderComponent(props) {
     return (
         <div>
             <QrReader
+                key="environment"
+                constraints={{  video: {
+                        facingMode: {
+                            exact: "environment"
+                        }
+                    } }}
                 delay={500}
                 onError={handleError}
                 onScan={handleScan}

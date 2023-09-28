@@ -1,20 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './signin.scss'
 import cgiLogo from "../../core/statics/cgi.png";
 import {Button, TextField} from "@mui/material";
-import { useNavigate } from 'react-router-dom';
-import QRCode from "react-qr-code";
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import  Camera from './Camera'
-import { useSelector, useDispatch } from 'react-redux'
-import {setFirstName,setLastName,setPassword,setUnity,setEmail} from '../../core/reducers/userSlice'
+import { useDispatch } from 'react-redux'
+import {setFirstName,setLastName,setPassword, setEmail} from '../../core/reducers/userSlice'
 
 function Page1(props) {
-    const [openCamera,setOpenCamera] = useState(false)
-    const navigate = useNavigate();
     const dispatch = useDispatch()
+    const [isDisabled, setDisabled] = useState(true)
 
+    useEffect(() => {
+        setDisabled(formValidation())
+      }, [props.firstName, props.lastName, props.email, props.password])
 
+      const formValidation = () => {
+        if (props.firstName == '' || props.lastName == '' || props.email == '' || props.password == '') {
+          return true
+        } else {
+          return false
+        }
+      }
 
     return (
         <div className="form-container">
@@ -22,23 +27,21 @@ function Page1(props) {
                 <img src={cgiLogo} />
             </div>
             <div className="login-placeholder-text">
-                Inscrivez vous pour de profiter du jeux !
-                déjà inscrit ?
-                <a href="/"> connectez vous !</a>
+                Inscrivez-vous afin de profiter du jeu !
+                Déjà inscrit ?
+                <a href="/">  Connectez-vous !</a>
             </div>
             <br/>
             <div className="form-control-app">
-                <TextField value={props.firstName} onChange={e=>dispatch(setFirstName(e.target.value))} className="input-button-login" id="standard-basic" label="Prénom" variant="standard" />
+                <TextField autocomplete="given-name" value={props.firstName} onChange={e=>dispatch(setFirstName(e.target.value))} className="input-button-login" id="standard-basic" label="Prénom" variant="standard" required/>
                 <br/>
-                <TextField value={props.lastName} onChange={e=>dispatch(setLastName(e.target.value))} className="input-button-login" id="standard-basic" label="Nom" variant="standard" />
+                <TextField autocomplete="family-name" value={props.lastName} onChange={e=>dispatch(setLastName(e.target.value))} className="input-button-login" id="standard-basic" label="Nom" variant="standard" required/>
                 <br/>
-                {/*<TextField value={props.unit} onChange={e=>dispatch(setUnity(e.target.value))} className="input-button-login" id="standard-basic" label="Unité d'affaires" variant="standard" />*/}
-                {/*<br/>*/}
-                <TextField value={props.email} onChange={e=>dispatch(setEmail(e.target.value))} className="input-button-login" id="standard-basic" label="Email" variant="standard" />
+                <TextField type="email" autocomplete="email" value={props.email} onChange={e=>dispatch(setEmail(e.target.value))} className="input-button-login" id="standard-basic" label="Courriel" variant="standard" required/>
                 <br/>
-                <TextField type="password" value={props.password} onChange={e=>dispatch(setPassword(e.target.value))}  className="input-button-login" id="standard-basic" label="Mot de passe" variant="standard" />
+                <TextField type="password" value={props.password} onChange={e=>dispatch(setPassword(e.target.value))}  className="input-button-login" id="standard-basic" label="Mot de passe" variant="standard" required/>
                 <div className="button-container">
-                    <Button variant="contained"  onClick={()=>props.setPage(2)}>Suivant</Button>
+                    <Button disabled={isDisabled} variant="contained" onClick={()=>props.setPage(2)}>Suivant</Button>
                 </div>
             </div>
         </div>

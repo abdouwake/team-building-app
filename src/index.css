@@ -2,6 +2,3 @@ body{
     /*background-color: #000000;*/
     color: black !important;
 }
-.MuiButtonBase-root{
-   text-transform: capitalize !important;
-}

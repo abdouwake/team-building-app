@@ -1,15 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {Button} from '@mui/material';
 import './modale.scss'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import dayjs from 'dayjs';
 import { RequestGetGameplay, RequestUpdateGameplay} from "../../../core/actions/gameContext.action";
 import {useDispatch, useSelector} from "react-redux";
-import {setDateEnd} from "../../../core/reducers/gameControlSlice";
-import moment from "moment";
 import {Modal} from 'antd'
+import { frFR } from '@mui/x-date-pickers/locales';
 
 export const format = "YYYY-MM-DDTHH:mm:ss";
 function Modale(props) {
@@ -18,7 +16,18 @@ function Modale(props) {
     // var dateEnd = useSelector((state) => state.gameControl.dateEnd)
 
     const [date,setDate]= useState(null)
-
+    const [error, setError] = useState(null);
+    const errorMessage = useMemo(() => {
+        if (error == 'disablePast') {
+            return 'Veuillez choisir une date dans le futur.';
+        } 
+        else if (error != null && error != '') {
+            return 'La date est invalide.';
+        }     
+        else {
+            return '';
+        }
+    }, [error]);
     const dispatch = useDispatch()
     const startParty=()=>{
         dispatch(RequestUpdateGameplay(true,false,date))
@@ -42,20 +51,16 @@ function Modale(props) {
             open={props.open}
             footer={[
                 <Button key="back" onClick={()=>props.setOpen(false)}>
-                    Return
+                    Retour
                 </Button>,
-                <Button key="submit" type="primary"  onClick={ ()=>{
+                <Button disabled={!!errorMessage} key="submit" type="primary"  onClick={ ()=>{
                     if(!play){
                         startParty()
                     }else{
                         updateDateParty()}
                 }}>
                     {
-                        !play ?
-                             'Commencer la partie' :
-                            'Modifier'
-                            // <Button className="button-violet-cgi" onClick={()=>startParty()}> Commencer la partie !</Button>:
-                            // <Button className="button-violet-cgi" onClick={()=>updateDateParty()}> Modifier la date de la partie.</Button>
+                        !play ? 'Démarrer' : 'Modifier'
                     }
                 </Button>
             ]}
@@ -66,27 +71,33 @@ function Modale(props) {
             <div style={{width:"100%",height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
                 <div style={{textAlign:"center",padding:"30px"}}>
                     <div style={{marginBottom:"20px",color:"black"}}>
+                        <div>
                                 <div>
-                                   <div>
-                                       {
-                                           !play ?
-                                               "Vous êtes sur le point de démarer le jeux, veuillez fixer une heure d'arrête automatique de la partie.":
-                                               "Vous êtes sur le point de modifier la date de fin de la partie"
-                                       }
-                                   </div>
-                                    <br/>
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DateTimePicker
-                                            onChange={(NewDate)=> {
-                                                setDate(NewDate)
-                                            }}
-                                            value={date}
-                                            disablePast
-                                            // format={"YYYY-MM-DD HH:mm"}
-                                            views={['year', 'month', 'day', 'hours', 'minutes']}
-                                        />
-                                    </LocalizationProvider>
+                                    {
+                                        !play ?
+                                            "Vous êtes sur le point de démarrer le jeu, veuillez fixer une heure d'arrêt automatique de la partie.":
+                                            "Vous êtes sur le point de modifier la date de fin de la partie"
+                                    }
                                 </div>
+                                <br/>
+                                <LocalizationProvider localeText={frFR.components.MuiLocalizationProvider.defaultProps.localeText} dateAdapter={AdapterDayjs}>
+                                    <DateTimePicker
+                                        onChange={(NewDate)=> {
+                                            setDate(NewDate)
+                                        }}
+                                        value={date}
+                                        disablePast
+                                        // format={"YYYY-MM-DD HH:mm"}
+                                        views={['year', 'month', 'day', 'hours', 'minutes']}
+                                        onError={(newError) => setError(newError)}
+                                        slotProps={{
+                                            textField: {
+                                                helperText: errorMessage,
+                                            },
+                                            }}
+                                    />
+                                </LocalizationProvider>
+                            </div>
                     </div>
                 </div>
             </div>

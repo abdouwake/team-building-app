@@ -13,9 +13,11 @@ import {format} from "../../layouts/admin/modale/modale";
 export function getGameControlRequest(){
     return function (dispatch){
         return getGameplay().then(res=>{
-            dispatch(setPlay(res.data.data.play))
-            dispatch(setDateEnd(res.data.data.endDate))
-            dispatch(setPartyEnded(res.data.data.endGame))
+            if (!!res.data?.data) {
+                dispatch(setPlay(res.data.data.play))
+                dispatch(setDateEnd(res.data.data.endDate))
+                dispatch(setPartyEnded(res.data.data.endGame))
+            }
         })
     }
 }
@@ -46,9 +48,11 @@ export function RequestUpdateGameplay(play,EndGame,dateEnd){
     // console.log(dateEnd.$d)
     return function (dispatch){
         return updateGamePlay(play,EndGame,dateEnd.$d ).then(res=>{
-            dispatch(setPlay(res.data.data.play))
-            dispatch(setDateEnd(res.data.data.endDate))
-            dispatch(setPartyEnded(res.data.data.endGame))
+            if (!!res.data?.data) {
+                dispatch(setPlay(res.data.data.play))
+                dispatch(setDateEnd(res.data.data.endDate))
+                dispatch(setPartyEnded(res.data.data.endGame))
+            }
         })
     }
 }
@@ -56,12 +60,11 @@ export function RequestUpdateGameplay(play,EndGame,dateEnd){
 export function RequestGetGameplay(){
     return function (dispatch){
         return getGameplay().then(res=>{
-            dispatch(setPlay(res.data.data.play))
-            dispatch(setDateEnd(res.data.data.endDate))
-            dispatch(setPartyEnded(res.data.data.endGame))
+            if (!!res.data?.data) {
+                dispatch(setPlay(res.data.data.play))
+                dispatch(setDateEnd(res.data.data.endDate))
+                dispatch(setPartyEnded(res.data.data.endGame))
+            }
         })
     }
 }
-
-
-

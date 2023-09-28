@@ -8,6 +8,7 @@ import TemptationResult from '../stage/carousel/Attempts/TemptationResult'
 import RowEvent from "./row-event/row-event";
 import {RequestGetTentatives} from "../../core/actions/Discover.action";
 import {RequestGetUserListAll} from "../../core/actions/gameContext.action";
+import { TextField, MenuItem } from '@mui/material';
 
 function Dashboard(props) {
 
@@ -16,6 +17,22 @@ function Dashboard(props) {
     const tentatives = useSelector((state) => state.gameContext.tentatives)
     var userList = useSelector((state) => state.slider.userList)
     const dispatch = useDispatch()
+    const options = [
+        {
+            value: 1,
+            label: 'TOP 3 - Points',
+        },
+        {
+            value: 2,
+            label: 'TOP 3 - Coups ratés',
+        },
+        {
+            value: 3,
+            label: 'TOP 3 - Peu engagé'
+
+        }       
+      ];
+      const [option, setOption] = useState(options[0]);
 
     // RequestGetTentatives
     useEffect(() => {
@@ -24,10 +41,31 @@ function Dashboard(props) {
         setInterval(()=>{
             dispatch(RequestGetTentatives())
             dispatch(RequestGetUserListAll())
-
         }, 10000);
     }, []);
 
+    useEffect(() => {
+  
+        //Implementing the setInterval method
+        const interval = setInterval(() => {
+            switch(option.value) {
+                case 1: 
+                    setOption(options[1]);
+                    break;
+                case 2:
+                    setOption(options[2]);
+                    break;
+                case 3:
+                    setOption(options[0]);
+                    break;
+                default:
+                    setOption(options[0]);
+            }
+        }, 10000);
+  
+        //Clearing the interval
+        return () => clearInterval(interval);
+    }, [option]);
 
     return (
         <div className="dashboard-scene">
@@ -43,29 +81,83 @@ function Dashboard(props) {
                 }
 
                 <div className="ranking">
+                    <div className="selectOptions">{option.label}</div>
                     {
+                    option.value === 1 ?
                         [...userList]?.sort((a, b) => b.nbFound-a.nbFound).slice(0,3).map((user,idx)=>{
                             return(
                                 <div className="ranking-row">
-                                    <div className="rank-side" style={{fontSize:'40px',fontWeight:"600"}}>
+                                    <div className="rank-side" style={{fontSize:'3vw',fontWeight:"600"}}>
                                         {"#"+parseInt(idx+1)}
                                     </div>
-                                    <div className="profile-side">
                                         <div className="avatar-user">
                                             <img className="avatar-user" src={user.picture==="" || user.picture===null ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
                                         </div>
                                         <div className="nom-complet">
                                             {user.completeName}
                                         </div>
+                                        <div className="stat-side">
+                                            {user.nbFound}
+                                        </div>
                                     </div>
-                                    <div className="stat-side">
-                                        {user.nbFound + "/"+userList.length+" Found"}
-                                    </div>
-                                </div>
-
                             )
-
-                        })
+                        }) 
+                        : option.value === 2 ?
+                            [...tentatives]?.map(t => ({
+                                ...t,
+                                count: 0
+                            })).filter(t => !t.trouve).reduce((acc, curr) => {
+                                curr.count = 1;
+                                const exists = acc.find(o => o.id === curr.id);
+                                exists ? exists.count++ : acc.push((curr));
+                                return acc;
+                            }, []).map(t => Object.assign({ count: t.count }, [...userList]?.find(u => u.id == t.id))).sort((a, b) => b.count-a.count).slice(0, 3).map((user,idx)=>{
+                                return(
+                                    <div className="ranking-row">
+                                        <div className="rank-side" style={{fontSize:'3vw',fontWeight:"600"}}>
+                                            {"#"+parseInt(idx+1)}
+                                        </div>
+                                            <div className="avatar-user">
+                                                <img className="avatar-user" src={user.picture==="" || user.picture===null ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
+                                            </div>
+                                            <div className="nom-complet">
+                                                {user.completeName}
+                                            </div>
+                                            <div className="stat-side">
+                                                {user.count}
+                                            </div>
+                                        </div>
+                                )
+                            }) 
+                        :
+                        [...userList]?.filter(u => ![...tentatives]?.find(t => u.id === t.id)).map(t => ({
+                            ...t,
+                            count: 0
+                        })).concat(
+                            [...tentatives]?.reduce((acc, curr) => {
+                            curr.count = 1;
+                            const exists = acc.find(o => o.id === curr.id);
+                            exists ? exists.count++ : acc.push((curr));
+                            return acc;
+                        }, [])).map(t => Object.assign({ count: t.count }, [...userList]?.find(u => u.id == t.id))).sort((a, b) => a.count-b.count).slice(0, 3).map((user,idx)=>{
+                            return(
+                                <div className="ranking-row">
+                                    <div className="rank-side" style={{fontSize:'3vw',fontWeight:"600"}}>
+                                        {"#"+parseInt(idx+1)}
+                                    </div>
+                                        <div className="avatar-user">
+                                            <img className="avatar-user" src={user.picture==="" || user.picture===null ? "https://ui-avatars.com/api/?name="+user.completeName:user.picture} />
+                                        </div>
+                                        <div className="nom-complet">
+                                            {user.completeName}
+                                        </div>
+                                        <div className="stat-side">
+                                            {user.count}
+                                        </div>
+                                    </div>
+                            )
+                        }) 
+                    
                     }
                 </div>
 

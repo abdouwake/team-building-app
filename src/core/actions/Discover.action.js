@@ -1,4 +1,4 @@
-import {addDiscover, addTentative, getTentatives} from '../services/discovery.service'
+import {addDiscover, addTentative, getTentatives, initialize} from '../services/discovery.service'
 import {setHit} from '../reducers/gameControlSlice'
 import {setTentatives} from "../reducers/gameContextSlice";
 import {setAnimations} from "../../layouts/dashboard/Event/Event";
@@ -40,5 +40,11 @@ export function RequestAddTentative(idU1,idU2,trouve){
             // dispatch(addTentative(res.data.data))
             // setAnimations(news)
         })
+    }
+}
+
+export function Initialize() {
+    return function (dispatch){
+        return initialize()
     }
 }

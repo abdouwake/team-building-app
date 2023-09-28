@@ -1,42 +1,42 @@
 import React, {useRef,useCallback,useState} from 'react';
 import Webcam from "react-webcam";
 import './Camera.css'
-import {Button, TextField} from "@mui/material";
+import {Button} from "@mui/material";
 import {setPicture} from '../../core/reducers/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from "react-router-dom";
 import './Camera.css'
 const Camera = (props) =>{
     const dispatch = useDispatch()
     const picture = useSelector((state) => state.user.picture)
-    const navigate = useNavigate();
     const webcamRef = useRef(null);
 
     const capture = useCallback(() => {
+        props.setOpenCamera(false)
         const imageSrc = webcamRef.current.getScreenshot();
         dispatch(setPicture(imageSrc));
     }, [webcamRef]);
 
 
     return (
-        <div className="container" style={{display:"flex",justifyContent:"center"}}>
-            <div className="title-message">Prenez une photo de vous !</div>
+        <div className="container" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
             {
-                picture==="" ?
+                picture === "" ?
                     <Webcam  height={300} width={300} ref={webcamRef} >
                         {({ getScreenshot }) => (
-                            <Button variant="contained"  onClick={capture}>Prise</Button>
+                            <div className="form-control-app">
+                                <div class="buttons-container">
+                                    <Button variant="contained" onClick={capture}>Prise</Button>
+                                </div>
+                            </div>
                         )}
                     </Webcam>
-                    :
-                    <div style={{textAlign:"center"}}>
-                        <img className="user-picture"  src={picture} />
-                        <div>
-                            <Button style={{margin:"20px"}} variant="contained"  onClick={()=>dispatch(setPicture(""))}>Réessayer</Button>
-                            <Button variant="contained" onClick={()=> {
-                                props.setOpenCamera(false)
-                            }} >Enregistrers</Button>
+                :
+                    <div className="form-control-app">
+                        <img className="user-picture" src={picture} />
+                        <div class="buttons-container">
+                            <Button variant="contained" onClick={()=>dispatch(setPicture(""))}>Réessayer</Button>
                         </div>
+
                     </div>
             }
         </div>

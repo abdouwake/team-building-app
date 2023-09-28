@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './login.scss'
 import cgiLogo from '../../core/statics/cgi.png'
 import {Button, TextField} from "@mui/material";
@@ -17,6 +17,19 @@ function Login(props) {
     const navigateFunction=()=>{
         navigate("/stage")
     }
+    const [isDisabled, setDisabled] = useState(true)
+
+    useEffect(() => {
+        setDisabled(formValidation())
+      }, [email, password])
+
+      const formValidation = () => {
+        if (email == ''|| email == null || password == '' || password == null) {
+          return true
+        } else {
+          return false
+        }
+      }
 
     return (
         <div className="page-container">
@@ -25,17 +38,17 @@ function Login(props) {
                     <img src={cgiLogo} />
                 </div>
                 <div className="login-placeholder-text">
-                    Connectez vous pour de profiter du jeux !
+                    Connectez-vous pour profiter du jeu !
                     Pas encore inscrit ?
-                    <a href="/signin"> crée un compte.</a>
+                    <a href="/signin"> Créer un compte.</a>
                 </div>
                 <br/>
                 <div className="form-control-card">
-                    <TextField value={email} onChange={e=>setEmail(e.target.value)} className="input-button-login" id="standard-basic" label="Email" variant="standard" />
+                    <TextField value={email} onChange={e=>setEmail(e.target.value)} className="input-button-login" id="standard-basic" label="Courriel" variant="standard" required/>
                     <br/>
-                    <TextField type="password" value={password} onChange={e=>setPassword(e.target.value)}  className="input-button-login" id="standard-basic" label="Mot de passe" variant="standard" />
+                    <TextField type="password" value={password} onChange={e=>setPassword(e.target.value)}  className="input-button-login" id="standard-basic" label="Mot de passe" variant="standard" required/>
                     <div className="button-container">
-                        <Button variant="contained" onClick={()=>onLogin()}>Login</Button>
+                        <Button disabled={isDisabled} variant="contained" onClick={()=>onLogin()}>Connexion</Button>
                     </div>
                 </div>
             </div>

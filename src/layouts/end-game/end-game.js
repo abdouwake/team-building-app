@@ -22,7 +22,7 @@ function EndGame(props) {
             <div className="end-of-game">
                 <TrophyOutlined/>
                 <div>
-                    Fin in de la partie
+                    Fin de la partie
                 </div>
             </div>
             {

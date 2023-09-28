@@ -23,3 +23,7 @@ export function addTentative(id1,id2,trouve){
     }
     return api.post("tentative/add",data).catch((e)=>errorHandler(e))
 }
+
+export function initialize(){
+    return api.delete("discover/initialize").catch((e)=>errorHandler(e))
+}

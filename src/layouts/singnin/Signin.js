@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 import './signin.scss'
-import cgiLogo from "../../core/statics/cgi.png";
-import {Button, TextField} from "@mui/material";
 import { useNavigate } from 'react-router-dom';
-import QRCode from "react-qr-code";
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import  Camera from './Camera'
 import { useSelector, useDispatch } from 'react-redux'
 import Page1 from './Page1'
 import Page2 from './Page2'
+import Page3 from './Page3';
+import Page4 from './Page4';
 import {signinRequest} from '../../core/actions/user.action';
 
 function Signin(props) {
@@ -39,20 +36,34 @@ function Signin(props) {
         <div className="page-container">
             {
               page===1 ?
-                  <Page1
-                      setPage={setPage}
-                      firstName={firstName}
-                      lastName={lastName}
-                      email={email}
-                      password={password}
-                      unity={unity}
-              /> :
-                  <Page2
-                      picture={picture}
-                      funFact={funFact}
-                      login={login}
-                      setPage={setPage}
-                  />
+                <Page1
+                    setPage={setPage}
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                    password={password}
+                    unity={unity}
+                /> 
+            : page===2 ?
+                <Page2
+                    funFact={funFact}
+                    setPage={setPage}
+                />
+            : page===3 ?
+                <Page3
+                    picture={picture}
+                    setPage={setPage}
+                />
+            :   
+                <Page4
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                    funFact={funFact}
+                    picture={picture}
+                    login={login}
+                    setPage={setPage}
+                />
             }
         </div>
     );

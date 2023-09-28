@@ -17,8 +17,8 @@ export function getUserListAll(){
 
 export function updateGamePlay(play,EndGame,dateEnd){
     var gamePlay = {
-        play:play,
-        endGame : EndGame,
+        play: !!play,
+        endGame : !!EndGame,
         endDate:String(dateEnd).split('GMT')[0]
     }
     return api.put("gameplay/update",gamePlay).catch((e)=>errorHandler(e))

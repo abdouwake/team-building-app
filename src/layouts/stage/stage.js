@@ -47,7 +47,7 @@ function Stage(props) {
                             <Profile/>
                             <br/>
                             <div style={{textAlign:"center"}}>
-                                Essayez d'identifier vos collèguees
+                                Essayez d'identifier vos collègues
                             </div>
                             <Carousel />
                             <br/>

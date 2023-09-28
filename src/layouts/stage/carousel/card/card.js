@@ -19,7 +19,7 @@ function Card(props) {
                     <div className="quote-text">
                         {userList.find((u)=>u.id==selectedUser) ?
                             userList.find((u)=>u.id==selectedUser)?.funFact
-                            :<div style={{fontWeight:"600"}}>Selectionnez un utilisateur pour afficher son FunFact !</div>
+                            :<div style={{fontWeight:"600"}}>Sélectionnez un utilisateur pour afficher son fait amusant !</div>
                         }
                     </div>
                     {
